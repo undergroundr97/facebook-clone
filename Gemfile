@@ -61,3 +61,9 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
+
+gem "simple_form", "~> 5.4"
+
+gem "foreman", "~> 0.90.0"
+
+gem "devise", "~> 4.9"

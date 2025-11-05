@@ -25,5 +25,8 @@
   <body>
     <%= button_to 'Log off', destroy_user_session_path, method: :delete%>
     <%= yield %>
+    <% if Rails.env.development? %>
+  <script src="http://localhost:35729/livereload.js?snipver=1"></script>
+<% end %>
   </body>
 </html>

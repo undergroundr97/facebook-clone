@@ -43,7 +43,8 @@ gem "thruster", require: false
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"
-
+  gem "guard"
+  gem "guard-livereload", require: false
   # Static analysis for security vulnerabilities [https://brakemanscanner.org/]
   gem "brakeman", require: false
 
@@ -67,3 +68,9 @@ gem "simple_form", "~> 5.4"
 gem "foreman", "~> 0.90.0"
 
 gem "devise", "~> 4.9"
+
+gem "omniauth-github", "~> 2.0"
+
+gem "omniauth-rails_csrf_protection", "~> 1.0"
+
+gem "figaro", "~> 1.3"

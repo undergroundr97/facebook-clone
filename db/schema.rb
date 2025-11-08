@@ -10,9 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_11_05_180204) do
+ActiveRecord::Schema[8.0].define(version: 2025_11_08_052230) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
+
+  create_table "homes", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "invites", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "from_user_id"
+    t.bigint "to_user_id"
+    t.integer "status", default: 0
+    t.index ["from_user_id"], name: "index_invites_on_from_user_id"
+    t.index ["to_user_id"], name: "index_invites_on_to_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "name"
@@ -28,4 +43,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_11_05_180204) do
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
+
+  add_foreign_key "invites", "users", column: "from_user_id"
+  add_foreign_key "invites", "users", column: "to_user_id"
 end

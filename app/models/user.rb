@@ -14,4 +14,6 @@ class User < ApplicationRecord
       user.name = auth.info.name
     end
   end
+  has_many :sent_invites, class_name: "Invite", foreign_key: "from_user_id"
+  has_many :received_invites, class_name: "Invite", foreign_key: "to_user_id"
 end

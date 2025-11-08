@@ -1,9 +1,7 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  from_user: 1
-  to_user: one
+  user: one
 
 two:
-  from_user: 1
-  to_user: two
+  user: two

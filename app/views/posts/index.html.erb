@@ -1,0 +1,29 @@
+<p style="color: green"><%= notice %></p>
+
+<% content_for :title, "Posts" %>
+
+
+  <h1>Your posts:</h1>
+  <%= render @posts.where(post_creator_id: @current_user_id)%>
+ 
+  
+  
+<p> --------- </p>
+<h2> this is follower posts</h2>
+<%= @current_user_id%>
+<%= @followed_users%>
+<% @follower_posts.each do |post|%>
+<%= render post%>
+<%end%>
+
+<p>----------</p>
+<div id="user-posts">
+  <% @posts.each do |post| %>
+    <%= render post %>
+    <p>
+      <%= link_to "Show this post", post %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New post", new_post_path %>

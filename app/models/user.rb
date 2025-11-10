@@ -18,4 +18,6 @@ class User < ApplicationRecord
   has_many :received_invites, class_name: "Invite", foreign_key: "to_user_id"
   has_many :followers, class_name: "Follower", foreign_key: "followed_user_id"
   has_many :followeds, class_name: "Follower", foreign_key: "follower_id"
+  has_many :posts, class_name: "Post", foreign_key: "post_creator_id"
+  has_many :comments
 end

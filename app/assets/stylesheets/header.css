@@ -1,0 +1,19 @@
+.header {
+    display: flex;
+    height: 80px;
+    width: inherit;
+    justify-content: space-between;
+    align-items: center;
+}
+.header-left {
+    background-color: black;
+    width: 200px;
+    height: 30px;
+}
+
+.header-right{
+    background-color: aqua;
+    width: 200px;
+    height: 30px;
+}
+

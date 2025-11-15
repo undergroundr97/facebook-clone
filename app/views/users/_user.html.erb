@@ -1,7 +1,11 @@
-<div id="<%= dom_id user %>">
+<div id="user-card">
+  <img src="<%= user.user_image%>" alt="">
   <p>
     <strong>Name:</strong>
     <%= user.name %>
   </p>
+  <%= puts user.profile&.id%>
+  <%= link_to 'See User Profile', edit_profile_path(user.profile.id)%>
+  <%= button_to 'Send Follow Request', invites_path, method: :post, params: {invite:{from_use_id: current_user.id, to_user_id: user.id}}%>
 
 </div>

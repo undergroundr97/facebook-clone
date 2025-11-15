@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_11_10_152249) do
+ActiveRecord::Schema[8.0].define(version: 2025_11_10_213348) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -58,6 +58,19 @@ ActiveRecord::Schema[8.0].define(version: 2025_11_10_152249) do
     t.index ["post_creator_id"], name: "index_posts_on_post_creator_id"
   end
 
+  create_table "profiles", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "name"
+    t.string "surname"
+    t.string "location"
+    t.date "birthdate"
+    t.string "gender"
+    t.string "avatar_url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_profiles_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -80,4 +93,5 @@ ActiveRecord::Schema[8.0].define(version: 2025_11_10_152249) do
   add_foreign_key "invites", "users", column: "from_user_id"
   add_foreign_key "invites", "users", column: "to_user_id"
   add_foreign_key "posts", "users", column: "post_creator_id"
+  add_foreign_key "profiles", "users"
 end

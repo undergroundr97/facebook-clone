@@ -9,5 +9,6 @@
 #   end
 
 for i in 1..5
-  User.create(name: "vitor#{i}", email: "vitor#{i}@gmail.com", password: '123456789')
+  current_user = User.create(name: "vitor#{i}", email: "vitor#{i}@gmail.com", password: '123456789')
+  Profile.create(user_id: current_user.id)
 end

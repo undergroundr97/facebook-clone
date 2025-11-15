@@ -24,8 +24,15 @@ html {
 }
 body {
     /* height: 100vh; */
-    display: flex;
+    /* display: flex; */
+    flex: 1;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.fake-body{
+  display: flex;
+  flex-direction: column;
     align-items: center;
     justify-content: center;
 }

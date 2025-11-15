@@ -1,3 +1,4 @@
+require "digest/md5"
 class User < ApplicationRecord
   extend Devise::Models
   # Include default devise modules. Others available are:
@@ -8,16 +9,24 @@ class User < ApplicationRecord
 
   def self.from_omniauth(auth)
     User.find_or_create_by!(provider: auth.provider, uid: auth.uid) do |user|
+      user.profile = Profile.create(user_id: user.id)
       # where(provider: auth.provider, uid: auth.uid).find_or_create_by!
       user.email = auth.info.email
       user.password = Devise.friendly_token[0, 20]
       user.name = auth.info.name
     end
   end
-  has_many :sent_invites, class_name: "Invite", foreign_key: "from_user_id"
-  has_many :received_invites, class_name: "Invite", foreign_key: "to_user_id"
-  has_many :followers, class_name: "Follower", foreign_key: "followed_user_id"
-  has_many :followeds, class_name: "Follower", foreign_key: "follower_id"
-  has_many :posts, class_name: "Post", foreign_key: "post_creator_id"
+
+    def user_image
+      digested_email = Digest::MD5.hexdigest(self.email.strip.downcase)
+      gravatar_link = "https://www.gravatar.com/avatar/#{digested_email}"
+      gravatar_link
+    end
+  has_many :sent_invites, class_name: "Invite", foreign_key: "from_user_id", dependent: :destroy
+  has_many :received_invites, class_name: "Invite", foreign_key: "to_user_id", dependent: :destroy
+  has_many :followers, class_name: "Follower", foreign_key: "followed_user_id", dependent: :destroy
+  has_many :followeds, class_name: "Follower", foreign_key: "follower_id", dependent: :destroy
+  has_many :posts, class_name: "Post", foreign_key: "post_creator_id", dependent: :destroy
   has_many :comments
+  has_one :profile, dependent: :destroy
 end

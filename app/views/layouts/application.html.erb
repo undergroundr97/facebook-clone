@@ -23,8 +23,9 @@
   </head>
 
   <body>
+    <%= render 'layouts/header'%>
     <%= button_to 'Log off', destroy_user_session_path, method: :delete%>
-    <%= yield %>
+    <div class="fake-body"><%= yield %></div>
     <% if Rails.env.development? %>
   <script src="http://localhost:35729/livereload.js?snipver=1"></script>
 <% end %>

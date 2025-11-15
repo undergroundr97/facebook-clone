@@ -6,10 +6,12 @@
 
 <div id="users">
   <% @users.each do |user| %>
+    <% next if user == current_user%>
+    <% next if user.received_invites.ids.include?(current_user.id)%>
     <%= render user %>
-    <p>
-      <%= link_to "Show this user", user %>
-    </p>
+
+      <%# <%= link_to "Show this user", user %>
+ 
   <% end %>
 </div>
 

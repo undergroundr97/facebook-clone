@@ -71,6 +71,6 @@ gem "devise", "~> 4.9"
 
 gem "omniauth-github", "~> 2.0"
 
-gem "omniauth-rails_csrf_protection", "~> 1.0"
+gem "omniauth-rails_csrf_protection", "~> 2.0"
 
 gem "figaro", "~> 1.3"
